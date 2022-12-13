@@ -15,4 +15,4 @@ while Variables.cpu_lives > 0 and Variables.p1_lives > 0:
     while Variables.Turn == True:
         Funciones.shoot(int(input("Introduce coordinate x")), (int(input("Introduce coordinate y"))), Variables.cpu_board_boats, Variables.p1_board_shots, "p1")
     while Variables.Turn == False:
-        Funciones.shoot((random.randint(0,9)), (random.randint(0,9)), Variables.p1_board_shots, "cpu")
+        Funciones.shoot((random.randint(0,9)), (random.randint(0,9)), Variables.p1_board_boats, Variables.p1_board_shots, "cpu")
