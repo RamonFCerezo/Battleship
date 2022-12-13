@@ -8,3 +8,4 @@ p1_boats_list = []
 size = 10
 cpu_lives = 20
 p1_lives = 20
+Turn = True

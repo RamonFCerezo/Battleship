@@ -1,39 +1,49 @@
-def list_of_contiguous(random_boat):
+import numpy as np
+import random
+import Variables
 
+def list_of_contiguous(random_boat):
+    '''
+    This function takes the previously generated boat and returns a list with all the contiguous locations of it.
+    The list includes the boat locations too.
+    '''
     contiguous = []
-    for spot in random_boat:
+    for spot in random_boat: #For each spot coordinates, we add the values on the tuples to get the contiguous
         for dx, dy in [(1, 0), (1, 1), (-1, -1), (1, -1), (-1, 1), (-1, 0), (0, 1), (0, -1), (0, 0)]:
             nx, ny = spot[0] + dx, spot[1] + dy
-            if nx >= 0 and nx < size and ny >= 0 and ny < size:
-                if (nx,ny) in contiguous:
-                    continue
+            if nx >= 0 and nx < Variables.size and ny >= 0 and ny < Variables.size: #To avoid including spots out of the board
+                if (nx,ny) in contiguous: 
+                    continue #Some of the contiguous values will be repeated, so we avoid that with this if
                 else:
                     contiguous.append((nx, ny))
     return contiguous
 
 def random_boats_generator(size, player):
+    '''
+       Function that creates new boats of a specified size and validates them in their board 
+    '''
     random_boat = []
 
-    while len(random_boat) < size:
+    while len(random_boat) < size:   #Inicialize a new boat with random values: first spot (column and row), and orientation
         random_row = random.randint(0,9)
         random_column = random.randint(0,9)
         orien = random.choice(["North", "South", "East", "West"])
         random_boat.append((random_row, random_column))
-        if size == 1:
+        if size == 1:    #To make the whole loop work, separated boats of size = 1 in this condition
             if player == "p1":
                 for spot in list_of_contiguous(random_boat):
-                    if p1_board_boats[spot] == "O":
-                        random_boat.clear()
+                    if Variables.p1_board_boats[spot] == "O":
+                        random_boat.clear() #If any spot in the list of contiguous is in the board, the random boat restarts
                         continue
 
             if player == "cpu":
                 for spot in list_of_contiguous(random_boat):
-                    if cpu_board_boats[spot] == "O":
-                        random_boat.clear()
+                    if Variables.cpu_board_boats[spot] == "O":
+                        random_boat.clear()  #If any spot in the list of contiguous is in the board, the random boat restarts
                         continue
                     
         while random_boat != [] and len(random_boat) != size:
-            if orien == "North":
+            if orien == "North": #To create the new boat according to the orientation
                 random_row = random_row - 1
             if orien == "South":
                 random_row = random_row + 1
@@ -43,87 +53,86 @@ def random_boats_generator(size, player):
                 random_column = random_column - 1
             random_boat.append((random_row, random_column))
             if random_row >= 10 or random_column >= 10 or random_row <= 0 or random_column <= 0:
-                random_boat.clear()
+                random_boat.clear() #Restart the boat if any axis of the new spot is above 10 or under 0
                 continue
             
             if player == "p1":
                 for spot in list_of_contiguous(random_boat):
-                    if p1_board_boats[spot] == "O":
+                    if Variables.p1_board_boats[spot] == "O":
                         random_boat.clear()
-                        continue
+                        continue #Restart the boat if any spot in list of contiguous is already a boat in board
 
             if player == "cpu":
                 for spot in list_of_contiguous(random_boat):
-                    if cpu_board_boats[spot] == "O":
-                        random_boat.clear()
+                    if Variables.cpu_board_boats[spot] == "O":
+                        random_boat.clear() #Restart the boat if any spot in list of contiguous is already a boat in board
                         continue
     if player == "p1":
-        p1_boats_list.append(random_boat)
+        Variables.p1_boats_list.append(random_boat)
     elif player == "cpu":
-        cpu_boats_list.append(random_boat)
+        Variables.cpu_boats_list.append(random_boat)
     return random_boat
 
 def boat_placing(complete_location, contiguous, player):
-    if player == "p1":
+    '''
+    Places the new boat in the board depending on the player, replacing the empty space for an "O" in the index of the Np.array
+    '''
+    if player == "p1":                          #Places the new boat in the board depending on the player
         for spot in complete_location:
-            p1_board_boats[spot] = "O"                
-        return p1_board_boats
+            Variables.p1_board_boats[spot] = "O"                
+        return Variables.p1_board_boats
 
     if player == "cpu":
         for spot in complete_location:
-            cpu_board_boats[spot] = "O"                
-        return cpu_board_boats
-
-def boats_cpu():
-
-    boat1 = Boat(4, "cpu")
-    boat2 = Boat(3, "cpu")
-    boat3 = Boat(3, "cpu")
-    boat4 = Boat(2, "cpu")
-    boat5 = Boat(2, "cpu")
-    boat6 = Boat(2, "cpu")
-    boat7 = Boat(1, "cpu")
-    boat8 = Boat(1, "cpu")
-    boat9 = Boat(1, "cpu")
-    boat10 = Boat(1, "cpu")
-
-    boat10.placing
+            Variables.cpu_board_boats[spot] = "O"                
+        return Variables.cpu_board_boats
 
 
-
-def boats_p1():
-
-    boat11 = Boat(4, "p1")
-    boat12 = Boat(3, "p1")
-    boat13 = Boat(3, "p1")
-    boat14 = Boat(2, "p1")
-    boat15 = Boat(2, "p1")
-    boat16 = Boat(2, "p1")
-    boat17 = Boat(1, "p1")
-    boat18 = Boat(1, "p1")
-    boat19 = Boat(1, "p1")
-    boat20 = Boat(1, "p1")
-
-    boat20.placing
-
-
-def shoot(spot, board, shooter):
-    global cpu_lives
-    global p1_lives
-    if board[spot] == "O":
+def shoot(x, y, board, board2, shooter):
+    '''
+    Function that allows both players to shoot one spot of the opponent's board.
+    If the shot hits a boat, the player who did it keeps the turn. Otherwise, it will change.
+    Will print the both shots and boats board in each turn
+    '''
+    Variables.cpu_lives
+    Variables.p1_lives
+    if board[(x,y)] == "O":
         print("Hit!")
-        board[spot] = "X"
+        board[(x,y)] = "X" #If the given coordinates are part of a boat in the map, changes it "O", into "X"
         if shooter == "cpu":
-            p1_lives = p1_lives - 1
-            if p1_lives == 0:
+            Variables.p1_lives = Variables.p1_lives - 1 #Opponent loses a life after each right shot
+            print("Mis barcos")
+            print(board)
+            print("Disparos")
+            print(board2)
+            if Variables.p1_lives == 0:
                 print("No boats left, game over!")
         elif shooter == "p1":
-            cpu_lives = cpu_lives - 1
-            print(cpu_lives)
-            if cpu_lives == 0:
-                print("Your opponent has no botas, you won!")
+            board2[(x,y)] = "X"
+            print("Mis barcos")
+            print(Variables.p1_board_boats)
+            print("Disparos")
+            print(board2)
+            Variables.cpu_lives = Variables.cpu_lives - 1
+            print(Variables.cpu_lives)
+            if Variables.cpu_lives == 0:
+                print("Your opponent has no boats, you win!")
             
-    elif board[spot] == " ":
+    elif board[(x,y)] == " ":
         print("Water")
-        board[spot] = "-"
-    return board, cpu_lives, p1_lives
+        board[(x,y)] = "-" #If the given coordinates are not part of a boat in the map, changes it " ", into "-"
+        Variables.Turn = not Variables.Turn
+        if shooter == "cpu":
+            print("Mis barcos")
+            print(board)
+            print("Disparos")
+            print(board2)
+            return Variables.Turn, board, Variables.cpu_lives, Variables.p1_lives
+        if shooter == "p1":
+            board2[(x,y)] = "-"
+            print("Mis barcos")
+            print(Variables.p1_board_boats)
+            print("Disparos")
+            print(board2)
+            return Variables.Turn, board, board2, Variables.cpu_lives, Variables.p1_lives
+    return Variables.Turn, board, Variables.cpu_lives, board2, Variables.p1_lives
