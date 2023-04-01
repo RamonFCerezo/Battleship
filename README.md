@@ -9,7 +9,7 @@
 <h2>Project Structure</h2>
 <p>This project consists of 4 Python executable files:</p>
 
-<h4><strong>main.py:</strong></h4> <p>Executable of the game, contains the presentation messages, coordinate inputs, and the main logic of the game.</p>
+<h3><strong>main.py:</strong></h3> <p>Executable of the game, contains the presentation messages, coordinate inputs, and the main logic of the game.</p>
 <h4><strong>functions.py:</strong></h4>
   <ul>
     <li>random_boats_generator &#8594; Creates new boats of a specified size and validates them in their board</li>
