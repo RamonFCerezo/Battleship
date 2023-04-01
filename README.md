@@ -21,6 +21,7 @@
   <h2><strong>4. variables.py</strong></h2> Between the variables, we set three boards (player boats, player shots and cpu shots), both empty lists of boats, the number of lives that decrease every time a shot finds a rival's boat, and a boolean to define the turn.
 
 <h1>How to play</h1>
-<p>After executing main.py file, it automatically will place your 10 boats (1 with size 4, 2 with size 3, 3 with size 2 and 4 with size 1) and the 10 boats of the cpu. None of them will be next to other boat. Then, you will be asked to introduce the coordinates x and y to shoot towards the opponent board. If you touch a boat, then you keep the turn, if you fail, then cpu will attack. 
-Game will finish when, either you or your opponent loses all their boats (or 20 lives).
+<ul><li>After executing main.py file, it automatically will place your 10 boats (1 with size 4, 2 with size 3, 3 with size 2 and 4 with size 1) and the 10 boats of the cpu. None of them will be next to other boat.</li>
+<li>Then, you will be asked to introduce the coordinates x and y to shoot towards the opponent board. If you touch a boat, then you keep the turn, if you fail, then cpu will attack.</li>
+<li>Game will finish when, either you or your opponent loses all their boats (or 20 lives).</li>
 
