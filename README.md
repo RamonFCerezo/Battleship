@@ -9,7 +9,7 @@
 <h2>Project Structure</h2>
 <p>This project consists of 4 Python executable files:</p>
 <ul>
-  <li><n>main.py</n> &#8594; Executable of the game, contains the presentation messages, coordinate inputs, and the main logic of the game.</li>
+  <li><b>main.py</b> &#8594; Executable of the game, contains the presentation messages, coordinate inputs, and the main logic of the game.</li>
   <li>functions.py &#8594;</li>
   <li>classes.py &#8594; </li>
   <li>variables.py &#8594; </li>
