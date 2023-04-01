@@ -1,4 +1,4 @@
-import Funciones
+import functions
 
 class Boat:
 
@@ -15,9 +15,9 @@ class Boat:
         self.size = size
         self.player = player
         self.lives = size
-        self.complete_location = Funciones.random_boats_generator(size, self.player)
-        self.contiguous = Funciones.list_of_contiguous(self.complete_location)
-        self.placing = Funciones.boat_placing(self.complete_location, self.contiguous, self.player)
+        self.complete_location = functions.random_boats_generator(size, self.player)
+        self.contiguous = functions.list_of_contiguous(self.complete_location)
+        self.placing = functions.boat_placing(self.complete_location, self.contiguous, self.player)
 
 def boats_cpu():
     '''
