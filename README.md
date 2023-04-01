@@ -13,8 +13,8 @@
   <li>functions.py &#8594;
     <ul>
       <li>random_boats_generator &#8594; Creates new boats of a specified size and validates them in their board</li>
-      <li>list_of_contiguous &#8594; Takes the previously generated boat and returns a list with all the contiguous locations of it, including the boat locations</li>
-      <li>boat_placing &#8594; Places the new boat in the board depending on the player, replacing the empty space for an "O" in the index of the np.array</li>
+      <li>list_of_contiguous &#8594; Takes the previously generated boat and returns a list with the contiguous locations of it, including the boat locations</li>
+      <li>boat_placing &#8594; Places the new boat in each player's boat, replacing the empty space for an "O" in the index of the np.array</li>
     </ul>
   <li>classes.py &#8594; </li>
   <li>variables.py &#8594; </li>
