@@ -10,7 +10,9 @@
 <p>This project consists of 4 Python executable files:</p>
 <ol>
   <li><strong>main.py</strong> &#8594; Executable of the game, contains the presentation messages, coordinate inputs, and the main logic of the game.</li>
-  <li>functions.py &#8594;</li>
+  <li>functions.py &#8594;
+    <ul>
+      <li>random_boats_generator &#8594; Function that creates new boats of a specified size and validates them in their board</li>
   <li>classes.py &#8594; </li>
   <li>variables.py &#8594; </li>
 </ol>
